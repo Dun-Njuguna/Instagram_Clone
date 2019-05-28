@@ -13,7 +13,7 @@ class MainFeed extends Component{
                 <View style={styles.tempNav}>
                     <Text>Instagram</Text>
                 </View>
-                <PostFeed/>
+                <PostFeed />
             </View>
 
         );

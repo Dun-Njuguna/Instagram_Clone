@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import{View, Text, TouchableOpacity} from  'react-native'
+import{View, Text, TouchableOpacity, TextInput, Button} from  'react-native'
 
 
 class Login extends Component{
 
     login(){
-
+        this.props.navigation.navigate("register")
     }
 
     render(){
@@ -20,7 +20,7 @@ class Login extends Component{
                 }}
                 onPress={() => {this.login()}}
             >
-            <Text>Login Page</Text>
+            <Text>New user?</Text>
             </TouchableOpacity>
         );
     }
