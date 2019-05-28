@@ -18,7 +18,7 @@ const Tabs = TabNavigator({
 });
 
 const IntroStack = StackNavigator({
-	// login: Login,
+	login: Login,
 	register: Register
 })
 

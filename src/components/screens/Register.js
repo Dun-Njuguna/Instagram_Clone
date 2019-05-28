@@ -1,9 +1,8 @@
-import React, {Component} from 'react'
-import{View, Text, TouchableOpacity, TextInput, Button, StyleSheet} from  'react-native'
+import React, {Component} from 'react' 
+import{StyleSheet, View, Text, TouchableOpacity, TextInput, Button} from  'react-native'
 import config from '../../config';
 
-
-class Login extends Component{
+class Register extends Component{
 
     constructor(){
         super()
@@ -24,27 +23,23 @@ class Login extends Component{
     }
 
     register(){
-        let credentials = this.state.credentials
-        credentials.email =this.state.credentials.email.toLowerCase();
-        console.log(JSON.stringify(credentials));
-        fetch(config.baseUrl + "login", {
+        fetch(config.baseUrl + 'signup', {
             method: 'POST',
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(credentials),
-          }).then(response => response.json())
+            body: JSON.stringify(this.state.credentials),
+          }).then((response) => response.json())
           .then((jsonResponse) => {
-              console.log(JSON.stringify(jsonResponse));
-              if(jsonResponse.confirmation === "success"){
+              if(jsonResponse.confirmation ==="success"){
                   this.props.navigation.navigate("main")//navigate to main app
-              }else{
-                  throw new Error(jsonResponse.message)
               }
           }).catch(err => {
-              alert(JSON.stringify(err.message))
+              alert(err)
           })
+            // alert(JSON.stringify(this.state.credentials))
+        //else error message
     }
 
     render(){
@@ -59,7 +54,7 @@ class Login extends Component{
                     backgroundColor: "rgb(252,61,57)"
                 }}
             >
-            <Text>Login Page</Text>
+            <Text>Register Page</Text>
             
             <TextInput 
                 value={this.state.email}
@@ -76,8 +71,8 @@ class Login extends Component{
                 onChangeText={text => this.updateText(text, "password")} 
                 style={styles.input}/>   
 
-            <Button onPress = {() => {this.register();}} title='Signin'/>
-            <Button onPress = {() => this.props.navigation.navigate("register")} title='No account? Sign up here!'/>
+            <Button onPress = {() => {this.register();}} title='Signup'/>
+
             </View>
         );
     }
@@ -93,5 +88,4 @@ const styles = StyleSheet.create({
     }
 })
 
-
-export default Login;
+export default Register;
